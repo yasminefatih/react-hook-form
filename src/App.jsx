@@ -24,7 +24,6 @@ const App = () => {
 
   const domain = watch("domain");
 
-  // * Remove from FORM
   useEffect(() => {
     if (domain !== "others") {
       unregister("otherdomainname");
@@ -35,7 +34,11 @@ const App = () => {
 
   return (
     <div className="h-screen grid place-items-center bg-gray-50">
-      <Card color="transparent" shadow={true} className="p-7 bg-white">
+      <Card
+        color="transparent"
+        shadow={true}
+        className="p-5 bg-white w-full max-w-lg"
+      >
         <Typography variant="h4" color="blue-gray">
           Sign Up
         </Typography>
@@ -44,10 +47,10 @@ const App = () => {
         </Typography>
         <br />
         <form
-          className="mb-4 w-[500px] grid grid-cols-2 gap-6"
+          className="mb-4 w-full grid gap-6 grid-cols-1 md:grid-cols-2"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div>
+          <div className="w-full">
             <Controller
               name="Username"
               rules={{
@@ -64,6 +67,7 @@ const App = () => {
                   {...field}
                   label="Username"
                   error={Boolean(errors?.Username?.message)}
+                  className="w-full"
                 />
               )}
             />
@@ -71,7 +75,7 @@ const App = () => {
               <span className="error-text">{errors?.Username?.message}</span>
             )}
           </div>
-          <div>
+          <div className="w-full">
             <Controller
               name="email"
               control={control}
@@ -79,7 +83,7 @@ const App = () => {
                 required: "Email ID is Required",
                 pattern: {
                   value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
-                  message: "Email ID is invaild",
+                  message: "Email ID is invalid",
                 },
               }}
               render={({ field }) => (
@@ -89,6 +93,7 @@ const App = () => {
                   {...field}
                   label="Email ID"
                   error={Boolean(errors?.email?.message)}
+                  className="w-full"
                 />
               )}
             />
@@ -96,7 +101,7 @@ const App = () => {
               <span className="error-text">{errors?.email?.message}</span>
             )}
           </div>
-          <div>
+          <div className="w-full">
             <Controller
               name="domain"
               control={control}
@@ -108,6 +113,7 @@ const App = () => {
                   label="Select Domain"
                   {...field}
                   error={Boolean(errors?.domain?.message)}
+                  className="w-full"
                 >
                   <Option value="designer">Designer</Option>
                   <Option value="dev">Developer</Option>
@@ -121,7 +127,7 @@ const App = () => {
             )}
           </div>
           {domain === "others" && (
-            <div>
+            <div className="w-full">
               <Controller
                 name="otherdomainname"
                 control={control}
@@ -134,6 +140,7 @@ const App = () => {
                     size="lg"
                     label="Type Here"
                     error={Boolean(errors?.otherdomainname?.message)}
+                    className="w-full"
                   />
                 )}
               />
@@ -144,7 +151,7 @@ const App = () => {
               )}
             </div>
           )}
-          <div>
+          <div className="w-full">
             <Controller
               name="password"
               control={control}
@@ -163,6 +170,7 @@ const App = () => {
                   size="lg"
                   label="Password"
                   error={Boolean(errors?.password?.message)}
+                  className="w-full"
                 />
               )}
             />
@@ -170,7 +178,7 @@ const App = () => {
               <span className="error-text">{errors?.password?.message}</span>
             )}
           </div>
-          <div>
+          <div className="w-full">
             <Controller
               name="confirmpassword"
               control={control}
@@ -186,6 +194,7 @@ const App = () => {
                   size="lg"
                   label="Confirm Password"
                   error={Boolean(errors?.confirmpassword?.message)}
+                  className="w-full"
                 />
               )}
             />
@@ -195,8 +204,7 @@ const App = () => {
               </span>
             )}
           </div>
-          {/* Add Phone Number Field */}
-          <div>
+          <div className="w-full">
             <Controller
               name="phone"
               control={control}
@@ -213,6 +221,7 @@ const App = () => {
                   {...field}
                   label="Phone Number"
                   error={Boolean(errors?.phone?.message)}
+                  className="w-full"
                 />
               )}
             />
@@ -220,7 +229,7 @@ const App = () => {
               <span className="error-text">{errors?.phone?.message}</span>
             )}
           </div>
-          <div className="col-span-2 grid grid-cols-2 gap-3">
+          <div className="col-span-1 md:col-span-2 grid grid-cols-1 gap-3">
             <Button type="reset" variant="outlined" onClick={() => reset()}>
               Reset
             </Button>
